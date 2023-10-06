@@ -4,7 +4,7 @@ Game you want to do:
     Checkers (player vs. player)
 
 Wireframe of your game:
-
+https://www.figma.com/file/X6TPI7B6WfPM88ueXNryOd/Untitled?type=design&node-id=0%3A1&mode=design&t=srduHdn1zlyYr3LF-1
 
 Brief psuedocode for gameplay:
     -index.html
@@ -40,5 +40,11 @@ Brief psuedocode for gameplay:
             - queens move diagonally but in any direction that's available
             - pawns who reach the last row of the opposite side become queens
             - check for pieces left on each side after jump, if no pieces left, then game over - side with pieces remaining is the winner
-            - 
+        - init
+            - show determining number of starting pieces
+            - tracking who's turn is it to start with, can start with just player 1
+        - render
+            - which pieces were capture from the board and remove those pieces from the board
+            - where living pieces were moved to
+
 ===========================
