@@ -9,10 +9,11 @@ https://www.figma.com/file/X6TPI7B6WfPM88ueXNryOd/Untitled?type=design&node-id=0
 Brief psuedocode for gameplay:
     -index.html
         -set up boilerplater
-        -connect style.ss and app.js to index.html
+        -connect style.css and app.js to index.html
         -find/create and input black pawn, black queen, red pawn, and red queen as html elements
         -create element for board, likely div
-        -create element for each board cell, c1 through c8 and r1 through r8, set class for redSpace and blackSpace, likely divs
+        -create element for inner board, lively div
+        -create element for each board cell, c1 through c8 and r1 through r8, set class for whiteSpace and brownSpace, likely divs
         -create element for title, likely h1
         -create element for turn, likely h2
         -create element for captured peices for each side like div - not for MVP
@@ -26,6 +27,8 @@ Brief psuedocode for gameplay:
         -center and position h1 (title), h2 (turn indicator), button (restart), div (winner notification)
     -app.js
         - set up frame work (constants, state variables, cached elements, event listeners, functions (init and render))
+        - state variables
+            -board is 8 arrays, each with 8 zeros (1 for black, -1 for red)
         - set up init: how should the game look in the beginning of a match, remember to render
         - set up render
         - add constants, state variables, and cached elements as you go
