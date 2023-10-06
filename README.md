@@ -16,7 +16,7 @@ Brief psuedocode for gameplay:
         -create element for each board cell, c1 through c8 and r1 through r8, set class for whiteSpace and brownSpace, likely divs
         -create element for title, likely h1
         -create element for turn, likely h2
-        -create element for captured peices for each side like div - not for MVP
+        -not in MVP: create element for captured peices for each side like div
         -create element for restart, likely button
         -create element for winner notification, likely div with h2 and p
     -style.css
