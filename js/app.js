@@ -64,6 +64,10 @@ function render() {
     renderMove();
 }
 
+function renderBoard() {
+    
+}
+
 function renderWinner() {
     let blackCount = 0;
     let redCount = 0;
