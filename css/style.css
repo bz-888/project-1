@@ -3,8 +3,24 @@
 }
 
 body {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 30% 70%;
+    display: flexbox;
 }
 
+.panelSide {
+    display: flexbox;
+    flex-direction: column;
+}
+
+.boardSide {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat (8, 1fr);
+}
+
+.brownSpace {
+    background-color: 675849;
+}
+
+.whiteSpace {
+    background-color: EBE2D7;
+}
