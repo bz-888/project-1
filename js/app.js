@@ -21,16 +21,25 @@ let winner;
 const turnIndicatorEl = document.querySelector(".turnIndicator");
 const endTurnButtonEl = document.querySelector(".endTurnButton");
 const restartButtonEl = document.querySelector(".restartButton");
-const resultEl = document.querySelector(".result");
+const messageEl = document.querySelector(".message");
+const gamePieceEl = document.querySelectorAll(".gamePiece");
+const destinationEl = document.querySelectorAll(".brownSpaces");
+
 
 
 // event listeners
 
 // end your turn
-endTurnButtonEl.addEventListener("click", endTurn());
+endTurnButtonEl.addEventListener("click", endTurn);
 
 // restarts the game using init
-restartButtonEl.addEventListener("click", init());
+restartButtonEl.addEventListener("click", init);
+
+// click on a game piece to move
+gamePieceEl.addEventListener("click", selectPiece);
+
+// move selected game piece to destination
+destinationEl.addEventListener("click", movePiece);
 
 // functions
 
@@ -61,15 +70,30 @@ function render() {
     renderWinner();
 }
 
+// show the game pieces
 function renderBoard() {
+    // pull each array from the boards array and call each array rowArr and remember the index number of each sub-array
     board.forEach(function(rowArr, rowIdx) {
+        // in each sub array, label the value as cellValue and lavel the index as colIdx, standing for column index
         rowArr.forEach(function(cellValue, colIdx) {
+            // create a cellID variable to hold the id name of each game piece
             const cellID = `gpc${colIdx + 1}r${rowIdx + 1}`
+            // create an element variable for each cellID
             const cellEl = document.getElementById(cellID);
+            // set the background color of cellEl by the value as defined in COLORS object
             cellEl.style.backgroundColor = COLORS[cellValue];
         });
     });
 };
+
+function selectPiece(event) {
+    movePiece();
+    
+}
+
+function movePiece(event) {
+
+}
 
 function renderWinner() {
     let blackCount = 0;
@@ -84,9 +108,7 @@ function renderWinner() {
         })    
     })
 
-    if (blackCount === 0 && redCount === 0) {
-        winner = null;
-    } else if (blackCount === 0) {
+    if (blackCount === 0) {
         winner = "Red";
     } else if (redCount === 0) {
         winner = "Black";
