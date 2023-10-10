@@ -22,8 +22,8 @@ const turnIndicatorEl = document.querySelector(".turnIndicator");
 const endTurnButtonEl = document.querySelector(".endTurnButton");
 const restartButtonEl = document.querySelector(".restartButton");
 const messageEl = document.querySelector(".message");
-const gamePieceEl = document.querySelectorAll(".gamePiece");
-const destinationEl = document.querySelectorAll(".brownSpaces");
+const boardEl = document.querySelector(".board");
+
 
 
 
@@ -36,10 +36,9 @@ endTurnButtonEl.addEventListener("click", endTurn);
 restartButtonEl.addEventListener("click", init);
 
 // click on a game piece to move
-gamePieceEl.addEventListener("click", selectPiece);
+boardEl.addEventListener("click", movePiece);
 
-// move selected game piece to destination
-destinationEl.addEventListener("click", movePiece);
+
 
 // functions
 
@@ -59,9 +58,10 @@ function init() {
     ];
     
 
-    turn = -1;
+    turn = "black";
     winner = null;
 
+    console.log(turn);
     render();
 }
 
@@ -77,22 +77,28 @@ function renderBoard() {
         // in each sub array, label the value as cellValue and lavel the index as colIdx, standing for column index
         rowArr.forEach(function(cellValue, colIdx) {
             // create a cellID variable to hold the id name of each game piece
-            const cellID = `gpc${colIdx + 1}r${rowIdx + 1}`
+            const cellID = `gpc${colIdx + 1}r${rowIdx + 1}`;
             // create an element variable for each cellID
             const cellEl = document.getElementById(cellID);
             // set the background color of cellEl by the value as defined in COLORS object
             cellEl.style.backgroundColor = COLORS[cellValue];
+            cellEl.innerText = cellValue;
         });
     });
-};
-
-function selectPiece(event) {
-    movePiece();
-    
 }
 
 function movePiece(event) {
+    validPiece(event);
+};
 
+function validPiece(event) {
+    if (turn === "black" && event.target.innerText === -1) {
+        console.log("black piece");
+    } else if (turn === "red" && event.target.innerText === 1) {
+        console.log("red piece");
+    } else {
+        console.log("error");
+    }
 }
 
 function renderWinner() {
@@ -116,9 +122,10 @@ function renderWinner() {
 }
 
 function endTurn() {
-    if (turn === -1) {
-        turn = turn + 2;
+    if (turn === "black") {
+        turn = "red";
     } else {
-        turn = turn - 2;
+        turn = "black";
     }
+    console.log(turn);
 };
