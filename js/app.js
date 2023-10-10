@@ -1,8 +1,14 @@
 // constants
 
+const COLORS = {
+    "-1": "black",
+    "0": 'transparent',
+    "1": "red",
+}
 
 // state variables
 
+// declaring state variables that will change as the game progresses
 let board;
 let turn;
 let winner;
@@ -10,63 +16,60 @@ let winner;
 
 
 // cached elements
+
+// caching elements by class
 const turnIndicatorEl = document.querySelector(".turnIndicator");
-const startButtonEl = document.querySelector(".startButton");
+const endTurnButtonEl = document.querySelector(".endTurnButton");
 const restartButtonEl = document.querySelector(".restartButton");
 const resultEl = document.querySelector(".result");
 
 
 // event listeners
 
-startButtonEl.addEventListener("click", start());
+// end your turn
+endTurnButtonEl.addEventListener("click", endTurn());
+
+// restarts the game using init
+restartButtonEl.addEventListener("click", init());
 
 // functions
 
 init();
 
 function init() {
+    // starts the game with a 8 arrays representing each row and 8 values in each array representing each column within each row
     board = [
+        [-1, 0, -1, 0, -1, 0, -1, 0],
+        [0, -1, 0, -1, 0, -1, 0, -1],
+        [-1, 0, -1, 0, -1, 0, -1, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0]
+        [0, 1, 0, 1, 0, 1, 0, 1],
+        [1, 0, 1, 0, 1, 0, 1, 0],
+        [0, 1, 0, 1, 0, 1, 0, 1]
     ];
     
-    turn = null;
+
+    turn = -1;
     winner = null;
 
     render();
 }
 
-function start() {
-    board = [
-        [-1, -1, -1, -1, -1, -1, -1, -1],
-        [-1, -1, -1, -1, -1, -1, -1, -1],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1]
-    ]
-
-    render()
-}
-
 function render() {
     renderBoard();
-    renderTurn();
     renderWinner();
-    renderMove();
 }
 
 function renderBoard() {
-    
-}
+    board.forEach(function(rowArr, rowIdx) {
+        rowArr.forEach(function(cellValue, colIdx) {
+            const cellID = `gpc${colIdx + 1}r${rowIdx + 1}`
+            const cellEl = document.getElementById(cellID);
+            cellEl.style.backgroundColor = COLORS[cellValue];
+        });
+    });
+};
 
 function renderWinner() {
     let blackCount = 0;
@@ -89,3 +92,11 @@ function renderWinner() {
         winner = "Black";
     }
 }
+
+function endTurn() {
+    if (turn === -1) {
+        turn = turn + 2;
+    } else {
+        turn = turn - 2;
+    }
+};

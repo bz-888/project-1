@@ -15,80 +15,208 @@
             <p>For Rebecca</p>
         </div>
         <div class="controls"></div>
-            <button class="startButton">Start</button>
+            <button class="endTurnButton">Start</button>
             <button class="restartButton">Restart</button>
         <div class="notifications"></div>
             <h3>Turn Indicator</h3>
             <div class="turnIndicator"></div>
-            <h3>Result</h3>
-            <div class="result"></div>
+            <h3>Message</h3>
+            <div class="message"></div>
     </div>
     <div class="boardSide"></div>
         <div class="board">
-            <div class="brownSpace" id="c1r1"></div>
-            <div class="whiteSpace" id="c2r1"></div>
-            <div class="brownSpace" id="c3r1"></div>
-            <div class="whiteSpace" id="c4r1"></div>
-            <div class="brownSpace" id="c5r1"></div>
-            <div class="whiteSpace" id="c6r1"></div>
-            <div class="brownSpace" id="c7r1"></div>
-            <div class="whiteSpace" id="c8r1"></div>
-            <div class="whiteSpace" id="c1r2"></div>
-            <div class="brownSpace" id="c2r2"></div>
-            <div class="whiteSpace" id="c3r2"></div>
-            <div class="brownSpace" id="c4r2"></div>
-            <div class="whiteSpace" id="c5r2"></div>
-            <div class="brownSpace" id="c6r2"></div>
-            <div class="whiteSpace" id="c7r2"></div>
-            <div class="brownSpace" id="c8r2"></div>
-            <div class="brownSpace" id="c1r3"></div>
-            <div class="whiteSpace" id="c2r3"></div>
-            <div class="brownSpace" id="c3r3"></div>
-            <div class="whiteSpace" id="c4r3"></div>
-            <div class="brownSpace" id="c5r3"></div>
-            <div class="whiteSpace" id="c6r3"></div>
-            <div class="brownSpace" id="c7r3"></div>
-            <div class="whiteSpace" id="c8r3"></div>
-            <div class="whiteSpace" id="c1r4"></div>
-            <div class="brownSpace" id="c2r4"></div>
-            <div class="whiteSpace" id="c3r4"></div>
-            <div class="brownSpace" id="c4r4"></div>
-            <div class="whiteSpace" id="c5r4"></div>
-            <div class="brownSpace" id="c6r4"></div>
-            <div class="whiteSpace" id="c7r4"></div>
-            <div class="brownSpace" id="c8r4"></div>
-            <div class="brownSpace" id="c1r5"></div>
-            <div class="whiteSpace" id="c2r5"></div>
-            <div class="brownSpace" id="c3r5"></div>
-            <div class="whiteSpace" id="c4r5"></div>
-            <div class="brownSpace" id="c5r5"></div>
-            <div class="whiteSpace" id="c6r5"></div>
-            <div class="brownSpace" id="c7r5"></div>
-            <div class="whiteSpace" id="c8r5"></div>
-            <div class="whiteSpace" id="c1r6"></div>
-            <div class="brownSpace" id="c2r6"></div>
-            <div class="whiteSpace" id="c3r6"></div>
-            <div class="brownSpace" id="c4r6"></div>
-            <div class="whiteSpace" id="c5r6"></div>
-            <div class="brownSpace" id="c6r6"></div>
-            <div class="whiteSpace" id="c7r6"></div>
-            <div class="brownSpace" id="c8r6"></div>
-            <div class="brownSpace" id="c1r7"></div>
-            <div class="whiteSpace" id="c2r7"></div>
-            <div class="brownSpace" id="c3r7"></div>
-            <div class="whiteSpace" id="c4r7"></div>
-            <div class="brownSpace" id="c5r7"></div>
-            <div class="whiteSpace" id="c6r7"></div>
-            <div class="brownSpace" id="c7r7"></div>
-            <div class="whiteSpace" id="c8r7"></div>
-            <div class="whiteSpace" id="c1r8"></div>
-            <div class="brownSpace" id="c2r8"></div>
-            <div class="whiteSpace" id="c3r8"></div>
-            <div class="brownSpace" id="c4r8"></div>
-            <div class="whiteSpace" id="c5r8"></div>
-            <div class="brownSpace" id="c6r8"></div>
-            <div class="whiteSpace" id="c7r8"></div>
-            <div class="brownSpace" id="c8r8"></div>
+            <div class="brownSpace" id="c1r1">
+                <div class="gamePiece" id="gpc1r1"></div>
+            </div>
+            <div class="whiteSpace" id="c2r1">
+                <div class="gamePiece" id="gpc2r1"></div>
+            </div>
+            <div class="brownSpace" id="c3r1">
+                <div class="gamePiece" id="gpc3r1"></div>
+            </div>
+            <div class="whiteSpace" id="c4r1">
+                <div class="gamePiece" id="gpc4r1"></div>
+            </div>
+            <div class="brownSpace" id="c5r1">
+                <div class="gamePiece" id="gpc5r1"></div>
+            </div>
+            <div class="whiteSpace" id="c6r1">
+                <div class="gamePiece" id="gpc6r1"></div>
+            </div>
+            <div class="brownSpace" id="c7r1">
+                <div class="gamePiece" id="gpc7r1"></div>
+            </div>
+            <div class="whiteSpace" id="c8r1">
+                <div class="gamePiece" id="gpc8r1"></div>
+            </div>
+            <div class="whiteSpace" id="c1r2">
+                <div class="gamePiece" id="gpc1r2"></div>
+            </div>
+            <div class="brownSpace" id="c2r2">
+                <div class="gamePiece" id="gpc2r2"></div>
+            </div>
+            <div class="whiteSpace" id="c3r2">
+                <div class="gamePiece" id="gpc3r2"></div>
+            </div>
+            <div class="brownSpace" id="c4r2">
+                <div class="gamePiece" id="gpc4r2"></div>
+            </div>
+            <div class="whiteSpace" id="c5r2">
+                <div class="gamePiece" id="gpc5r2"></div>
+            </div>
+            <div class="brownSpace" id="c6r2">
+                <div class="gamePiece" id="gpc6r2"></div>
+            </div>
+            <div class="whiteSpace" id="c7r2">
+                <div class="gamePiece" id="gpc7r2"></div>
+            </div>
+            <div class="brownSpace" id="c8r2">
+                <div class="gamePiece" id="gpc8r2"></div>
+            </div>
+            <div class="brownSpace" id="c1r3">
+                <div class="gamePiece" id="gpc1r3"></div>
+            </div>
+            <div class="whiteSpace" id="c2r3">
+                <div class="gamePiece" id="gpc2r3"></div>
+            </div>
+            <div class="brownSpace" id="c3r3">
+                <div class="gamePiece" id="gpc3r3"></div>
+            </div>
+            <div class="whiteSpace" id="c4r3">
+                <div class="gamePiece" id="gpc4r3"></div>
+            </div>
+            <div class="brownSpace" id="c5r3">
+                <div class="gamePiece" id="gpc5r3"></div>
+            </div>
+            <div class="whiteSpace" id="c6r3">
+                <div class="gamePiece" id="gpc6r3"></div>
+            </div>
+            <div class="brownSpace" id="c7r3">
+                <div class="gamePiece" id="gpc7r3"></div>
+            </div>
+            <div class="whiteSpace" id="c8r3">
+                <div class="gamePiece" id="gpc8r3"></div>
+            </div>
+            <div class="whiteSpace" id="c1r4">
+                <div class="gamePiece" id="gpc1r4"></div>
+            </div>
+            <div class="brownSpace" id="c2r4">
+                <div class="gamePiece" id="gpc2r4"></div>
+            </div>
+            <div class="whiteSpace" id="c3r4">
+                <div class="gamePiece" id="gpc3r4"></div>
+            </div>
+            <div class="brownSpace" id="c4r4">
+                <div class="gamePiece" id="gpc4r4"></div>
+            </div>
+            <div class="whiteSpace" id="c5r4">
+                <div class="gamePiece" id="gpc5r4"></div>
+            </div>
+            <div class="brownSpace" id="c6r4">
+                <div class="gamePiece" id="gpc6r4"></div>
+            </div>
+            <div class="whiteSpace" id="c7r4">
+                <div class="gamePiece" id="gpc7r4"></div>
+            </div>
+            <div class="brownSpace" id="c8r4">
+                <div class="gamePiece" id="gpc8r4"></div>
+            </div>
+            <div class="brownSpace" id="c1r5">
+                <div class="gamePiece" id="gpc1r5"></div>
+            </div>
+            <div class="whiteSpace" id="c2r5">
+                <div class="gamePiece" id="gpc2r5"></div>
+            </div>
+            <div class="brownSpace" id="c3r5">
+                <div class="gamePiece" id="gpc3r5"></div>
+            </div>
+            <div class="whiteSpace" id="c4r5">
+                <div class="gamePiece" id="gpc4r5"></div>
+            </div>
+            <div class="brownSpace" id="c5r5">
+                <div class="gamePiece" id="gpc5r5"></div>
+            </div>
+            <div class="whiteSpace" id="c6r5">
+                <div class="gamePiece" id="gpc6r5"></div>
+            </div>
+            <div class="brownSpace" id="c7r5">
+                <div class="gamePiece" id="gpc7r5"></div>
+            </div>
+            <div class="whiteSpace" id="c8r5">
+                <div class="gamePiece" id="gpc8r5"></div>
+            </div>
+            <div class="whiteSpace" id="c1r6">
+                <div class="gamePiece" id="gpc1r6"></div>
+            </div>
+            <div class="brownSpace" id="c2r6">
+                <div class="gamePiece" id="gpc2r6"></div>
+            </div>
+            <div class="whiteSpace" id="c3r6">
+                <div class="gamePiece" id="gpc3r6"></div>
+            </div>
+            <div class="brownSpace" id="c4r6">
+                <div class="gamePiece" id="gpc4r6"></div>
+            </div>
+            <div class="whiteSpace" id="c5r6">
+                <div class="gamePiece" id="gpc5r6"></div>
+            </div>
+            <div class="brownSpace" id="c6r6">
+                <div class="gamePiece" id="gpc6r6"></div>
+            </div>
+            <div class="whiteSpace" id="c7r6">
+                <div class="gamePiece" id="gpc7r6"></div>
+            </div>
+            <div class="brownSpace" id="c8r6">
+                <div class="gamePiece" id="gpc8r6"></div>
+            </div>
+            <div class="brownSpace" id="c1r7">
+                <div class="gamePiece" id="gpc1r7"></div>
+            </div>
+            <div class="whiteSpace" id="c2r7">
+                <div class="gamePiece" id="gpc2r7"></div>
+            </div>
+            <div class="brownSpace" id="c3r7">
+                <div class="gamePiece" id="gpc3r7"></div>
+            </div>
+            <div class="whiteSpace" id="c4r7">
+                <div class="gamePiece" id="gpc4r7"></div>
+            </div>
+            <div class="brownSpace" id="c5r7">
+                <div class="gamePiece" id="gpc5r7"></div>
+            </div>
+            <div class="whiteSpace" id="c6r7">
+                <div class="gamePiece" id="gpc6r7"></div>
+            </div>
+            <div class="brownSpace" id="c7r7">
+                <div class="gamePiece" id="gpc7r7"></div>
+            </div>
+            <div class="whiteSpace" id="c8r7">
+                <div class="gamePiece" id="gpc8r7"></div>
+            </div>
+            <div class="whiteSpace" id="c1r8">
+                <div class="gamePiece" id="gpc1r8"></div>
+            </div>
+            <div class="brownSpace" id="c2r8">
+                <div class="gamePiece" id="gpc2r8"></div>
+            </div>
+            <div class="whiteSpace" id="c3r8">
+                <div class="gamePiece" id="gpc3r8"></div>
+            </div>
+            <div class="brownSpace" id="c4r8">
+                <div class="gamePiece" id="gpc4r8"></div>
+            </div>
+            <div class="whiteSpace" id="c5r8">
+                <div class="gamePiece" id="gpc5r8"></div>
+            </div>
+            <div class="brownSpace" id="c6r8">
+                <div class="gamePiece" id="gpc6r8"></div>
+            </div>
+            <div class="whiteSpace" id="c7r8">
+                <div class="gamePiece" id="gpc7r8"></div>
+            </div>
+            <div class="brownSpace" id="c8r8">
+                <div class="gamePiece" id="gpc8r8"></div>
+            </div>
         </div>
 </body>
 </html>
