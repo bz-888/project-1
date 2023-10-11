@@ -13,6 +13,7 @@ let board;
 let turn;
 let winner;
 let selectedPieceId;
+let selectedDestinationId;
 
 
 
@@ -24,6 +25,7 @@ const endTurnButtonEl = document.querySelector(".endTurnButton");
 const restartButtonEl = document.querySelector(".restartButton");
 const messageEl = document.querySelector(".message");
 const boardEl = document.querySelector(".board");
+
 
 
 
@@ -90,10 +92,11 @@ function renderBoard() {
 }
 
 function movePiece(event) {
-    validPiece(event);
+    selectPiece(event);
+    selectDestination(event);
 };
 
-function validPiece(event) {
+function selectPiece(event) {
     if (turn === "black" && event.target.innerText === "-1") {
         // unselects a selected piece by removing yellow border and by emptying selectedPieceId variable
         if (event.target.style.border === "3px solid yellow") {
@@ -139,13 +142,37 @@ function validPiece(event) {
             // print message
             messageEl.innerText = "Red piece selected!"
         }
-    } else {
-        messageEl.innerText = "Not this side's turn!";
+    } else if (turn === "black" && event.target.innerText === "1") {
+        messageEl.innerText = "It's not Red side's turn!";
+    } else if (turn === "red" && event.target.innerText === "-1") {
+        messageEl.innerText = "It's not Black side's turn!";
     }
 }
 
-function validDestination(event) {
-
+function selectDestination(event) {
+    // grab the element of the selected piece based on the ID gathered in the selectPiece function
+    const selectedPieceEl = document.getElementById(selectedPieceId);
+    // grab the column and row numbers of the selected piece, this will be used to update the values in the board array
+    const selectedPieceCol = selectedPieceId[3];
+    const selectedPieceRow = selectedPieceId[5];
+    // grab the id of the clicked target destination
+    const selectedDestinationId = event.target.getAttribute("id");
+    // grab the element of the selected destination based on the ID gathered in the line above
+    const selectedDestinationEl = document.getElementById(selectedDestinationId);
+    // grab the column and row numbers of the selected piece, this will be used to update the values in the board array
+    const selectedDestinationCol = selectedDestinationId[3];
+    const selectedDestinationRow = selectedDestinationId[5];
+    
+    
+    if (selectedPieceEl.innerText === "-1") {
+        // update innerText to accomodate for future peice selection
+        selectedPieceEl.innerText = "0";
+        selectedDestinationEl.innerText = "-1";
+        // update the value of the board so the piece reappears in the new location visually
+        board[selectedPieceRow][selectedPieceCol] = 0;
+        board[selectedDestinationRow][selectedDestinationCol] = -1;
+        render();
+    }
 }
 
 function renderWinner() {
@@ -163,9 +190,12 @@ function renderWinner() {
 
     if (blackCount === 0) {
         winner = "Red";
+        console.log(`Winner is ${winner}!`)
     } else if (redCount === 0) {
         winner = "Black";
+        console.log(`Winner is ${winner}!`)
     }
+    
 }
 
 function endTurn() {
