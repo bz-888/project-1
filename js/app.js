@@ -92,13 +92,18 @@ function movePiece(event) {
 };
 
 function validPiece(event) {
-    if (turn === "black" && event.target.innerText === -1) {
-        console.log("black piece");
-    } else if (turn === "red" && event.target.innerText === 1) {
-        console.log("red piece");
+    if (turn === "black" && event.target.innerText === "-1") {
+        event.target.style.border = "3px solid yellow";
+        
+    } else if (turn === "red" && event.target.innerText === "1") {
+        event.target.style.border = "3px solid yellow";
     } else {
-        console.log("error");
+        console.log("Not this side's turn!");
     }
+}
+
+function moveValidPiece(event) {
+
 }
 
 function renderWinner() {
