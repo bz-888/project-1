@@ -60,6 +60,7 @@ function init() {
     
 
     turn = "black";
+    turnIndicatorEl.innerText = "Black side's turn!"
     winner = null;
 
     console.log(turn);
@@ -94,21 +95,52 @@ function movePiece(event) {
 
 function validPiece(event) {
     if (turn === "black" && event.target.innerText === "-1") {
+        // unselects a selected piece by removing yellow border and by emptying selectedPieceId variable
         if (event.target.style.border === "3px solid yellow") {
             event.target.style.border = "";
+            selectedPieceId = "";
+            // print message
+            messageEl.innerText = "Black piece unselected!"
         } else {
+            // removes highlight from all pieces
+            board.forEach(function(rowArr, rowIdx) {
+                rowArr.forEach(function(cellValue, colIdx) {
+                    const cellID = `gpc${colIdx}r${rowIdx}`;
+                    const cellEl = document.getElementById(cellID);
+                    cellEl.style.border = "";
+                })
+            })
+            // highlights selected piece
             event.target.style.border = "3px solid yellow";
+            // identify selected piece
             selectedPieceId = event.target.getAttribute("id");
+            // print message
+            messageEl.innerText = "Black piece selected!"
         }
     } else if (turn === "red" && event.target.innerText === "1") {
+        // unselects a selected piece by removing yellow border and by emptying selectedPieceId variable
         if (event.target.style.border === "3px solid yellow") {
             event.target.style.border = "";
+            // print message
+            messageEl.innerText = "Red piece unselected!"
         } else {
+            // removes highlight from all pieces
+            board.forEach(function(rowArr, rowIdx) {
+                rowArr.forEach(function(cellValue, colIdx) {
+                    const cellID = `gpc${colIdx}r${rowIdx}`;
+                    const cellEl = document.getElementById(cellID);
+                    cellEl.style.border = "";
+                })
+            })
+            // highlights selected piece
             event.target.style.border = "3px solid yellow";
+            // identify selected piece
             selectedPieceId = event.target.getAttribute("id");
+            // print message
+            messageEl.innerText = "Red piece selected!"
         }
     } else {
-        console.log("Not this side's turn!");
+        messageEl.innerText = "Not this side's turn!";
     }
 }
 
@@ -139,8 +171,9 @@ function renderWinner() {
 function endTurn() {
     if (turn === "black") {
         turn = "red";
+        turnIndicatorEl.innerText = "Red side's turn!"
     } else {
         turn = "black";
+        turnIndicatorEl.innerText = "Black side's turn!"
     }
-    console.log(turn);
 };
