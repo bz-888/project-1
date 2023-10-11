@@ -12,6 +12,7 @@ const COLORS = {
 let board;
 let turn;
 let winner;
+let selectedPieceId;
 
 
 
@@ -77,7 +78,7 @@ function renderBoard() {
         // in each sub array, label the value as cellValue and lavel the index as colIdx, standing for column index
         rowArr.forEach(function(cellValue, colIdx) {
             // create a cellID variable to hold the id name of each game piece
-            const cellID = `gpc${colIdx + 1}r${rowIdx + 1}`;
+            const cellID = `gpc${colIdx}r${rowIdx}`;
             // create an element variable for each cellID
             const cellEl = document.getElementById(cellID);
             // set the background color of cellEl by the value as defined in COLORS object
@@ -93,16 +94,25 @@ function movePiece(event) {
 
 function validPiece(event) {
     if (turn === "black" && event.target.innerText === "-1") {
-        event.target.style.border = "3px solid yellow";
-        
+        if (event.target.style.border === "3px solid yellow") {
+            event.target.style.border = "";
+        } else {
+            event.target.style.border = "3px solid yellow";
+            selectedPieceId = event.target.getAttribute("id");
+        }
     } else if (turn === "red" && event.target.innerText === "1") {
-        event.target.style.border = "3px solid yellow";
+        if (event.target.style.border === "3px solid yellow") {
+            event.target.style.border = "";
+        } else {
+            event.target.style.border = "3px solid yellow";
+            selectedPieceId = event.target.getAttribute("id");
+        }
     } else {
         console.log("Not this side's turn!");
     }
 }
 
-function moveValidPiece(event) {
+function validDestination(event) {
 
 }
 
