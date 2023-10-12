@@ -1,24 +1,27 @@
-===========================
 # PROJECT 1 PROPOSAL RUBRIC:
+
 ## Game you want to do:
-Checkers (player vs. player)
+Checkers (player vs. player, no AI)
 
 ## Wireframe of your game:
-(Figma wireframe) [https://www.figma.com/file/X6TPI7B6WfPM88ueXNryOd/Untitled?type=design&node-id=0%3A1&mode=design&t=srduHdn1zlyYr3LF-1]
+[Figma wireframe](https://www.figma.com/file/X6TPI7B6WfPM88ueXNryOd/Untitled?type=design&node-id=0%3A1&mode=design&t=srduHdn1zlyYr3LF-1)
 
-Brief psuedocode for gameplay:
-    -index.html
-        -set up boilerplater
-        -connect style.css and app.js to index.html
-        -find/create and input black pawn, black queen, red pawn, and red queen as html elements
-        -create element for board, likely div
-        -create element for inner board, lively div
-        -create element for each board cell, c1 through c8 and r1 through r8, set class for whiteSpace and brownSpace, likely divs
-        -create element for title, likely h1
-        -create element for turn, likely h2
-        -not in MVP: create element for captured peices for each side like div
-        -create element for restart, likely button
-        -create element for winner notification, likely div with h2 and p
+
+## Brief psuedocode for gameplay:
+### index.html
+1. set up boilerplater
+2. connect style.css and app.js to index.html
+3. create two divs for the two sides of the board, name the first one panelSide
+⋅⋅1. create a static info div for the title, description, and dedication
+
+
+3. create element for board, div
+4. create element for game spaces, c1 through c8 and r1 through r8, set class for whiteSpace and brownSpace, divs within board div
+5. create element for each game piece within each game space, divs with game space divs
+6. create element for title, h1
+7. create element for turn indicator, h2
+create element for restart, likely button
+create element for winner notification, likely div with h2 and p
     -style.css
         -set global styles, font and margin
         -set board as display: grid
