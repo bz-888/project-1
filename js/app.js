@@ -181,6 +181,7 @@ function selectDestination(event) {
             if (parseInt(selectedDestinationRow) - parseInt(selectedPieceRow) === 2) {
                 // define the target piece column and row, using parse int to convert string to number
                 const targetPieceCol = parseInt(selectedPieceCol) + (parseInt(selectedDestinationCol) - parseInt(selectedPieceCol))/2;
+                // target will always be one row below the selected piece
                 const targetPieceRow = parseInt(selectedPieceRow) + 1;
                 // define a spring as the ID of the target piece element
                 const targetPieceId = `gpc${targetPieceCol}r${targetPieceRow}`;
@@ -204,6 +205,24 @@ function selectDestination(event) {
             
     
         } else if (selectedPieceEl.innerText === "1") {
+            // if we are skipping over a piece, then do the following
+            if (parseInt(selectedDestinationRow) - parseInt(selectedPieceRow) === -2) {
+                // define the target piece column and row, using parse int to convert string to number
+                const targetPieceCol = parseInt(selectedPieceCol) + (parseInt(selectedDestinationCol) - parseInt(selectedPieceCol))/2;
+                // target will always be one row above the selected piece
+                const targetPieceRow = parseInt(selectedPieceRow) - 1;
+                // define a spring as the ID of the target piece element
+                const targetPieceId = `gpc${targetPieceCol}r${targetPieceRow}`;
+                // grab the element using the ID
+                const targetPieceEl = document.getElementById(targetPieceId);
+                console.log(`targetPiece: ${targetPieceId}`);
+        
+                // if the target piece is red when the selected piece is black, remove the red target piece from the board
+                if (targetPieceEl.innerText === "-1") {
+                    targetPieceEl.innerText = "0";
+                    board[targetPieceRow][targetPieceCol] = 0;
+                }
+            }
             // update innerText to accomodate for future peice selection
             selectedPieceEl.innerText = "0";
             selectedDestinationEl.innerText = "1";
@@ -233,10 +252,10 @@ function renderWinner() {
 
     if (blackCount === 0) {
         winner = "Red";
-        console.log(`Winner is ${winner}!`)
+        messageEl.innerText = `Winner is ${winner}!`
     } else if (redCount === 0) {
         winner = "Black";
-        console.log(`Winner is ${winner}!`)
+        messageEl.innerText = `Winner is ${winner}!`
     }
     
 }
