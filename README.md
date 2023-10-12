@@ -1,10 +1,10 @@
 ===========================
-PROJECT 1 PROPOSAL RUBRIC:
-Game you want to do:
-    Checkers (player vs. player)
+# PROJECT 1 PROPOSAL RUBRIC:
+## Game you want to do:
+Checkers (player vs. player)
 
-Wireframe of your game:
-https://www.figma.com/file/X6TPI7B6WfPM88ueXNryOd/Untitled?type=design&node-id=0%3A1&mode=design&t=srduHdn1zlyYr3LF-1
+## Wireframe of your game:
+(Figma wireframe) [https://www.figma.com/file/X6TPI7B6WfPM88ueXNryOd/Untitled?type=design&node-id=0%3A1&mode=design&t=srduHdn1zlyYr3LF-1]
 
 Brief psuedocode for gameplay:
     -index.html
