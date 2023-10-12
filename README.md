@@ -12,17 +12,18 @@ Checkers (player vs. player, no AI)
 1. set up boilerplater
 2. connect style.css and app.js to index.html
 3. create two divs for the two sides of the board, name the first one panelSide
-    1. create a static info div for the title, description, and dedication
+    1. create a static info div for the title (h1), description (h3), and dedication (p)
+    2. create a controls div for end turn button and restart button, both are button elements
+    3. create a notification div for turn indicator and message
+        * turn indicator should have a heading (h3) for as a label and an empty div to serve as a placeholder where text can be inserted
+        * likewise, message should have a h3 as a label and an empty div to serve as a placeholder where text can be inserted
 
+4. name the second div, boardSide
+    1. create element for board, div
+    2. create element for game spaces, c1 through c8 and r1 through r8, set class for whiteSpace and brownSpace, divs within board div
+    3. create element for each game piece within each game space, divs with game space divs, label them with an id in the same structure as the game spaces so you know where each game piece belongs to (I used "gpc#r#")
 
-3. create element for board, div
-4. create element for game spaces, c1 through c8 and r1 through r8, set class for whiteSpace and brownSpace, divs within board div
-5. create element for each game piece within each game space, divs with game space divs
-6. create element for title, h1
-7. create element for turn indicator, h2
-create element for restart, likely button
-create element for winner notification, likely div with h2 and p
-    -style.css
+### style.css
         -set global styles, font and margin
         -set board as display: grid
         -set board to have 8 columns and 8 rows using repeat(8, 1fr)
