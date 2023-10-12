@@ -12,7 +12,7 @@ body {
 .panelSide {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 300px;
 }
 
 .boardSide {

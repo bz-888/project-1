@@ -1,4 +1,4 @@
-# PROJECT 1 PROPOSAL RUBRIC:
+# PROJECT 1:
 
 ## Game you want to do:
 Checkers (player vs. player, no AI)
@@ -24,12 +24,29 @@ Checkers (player vs. player, no AI)
     3. create element for each game piece within each game space, divs with game space divs, label them with an id in the same structure as the game spaces so you know where each game piece belongs to (I used "gpc#r#")
 
 ### style.css
-        -set global styles, font and margin
-        -set board as display: grid
-        -set board to have 8 columns and 8 rows using repeat(8, 1fr)
-        -set board size
-        -center and position h1 (title), h2 (turn indicator), button (restart), div (winner notification)
-    -app.js
+1. set global styles, font and margin
+2. set up body
+    * set body as flexbox, it defaults to row orientation which we want, panelSide div on the left side and boardSide div on the right side
+    * set desired background
+    * set a gap so the panelSide and boardSide have a slight gap to separate them clearly
+    * align items based on your preference, I chose center alignment
+3. set up panel
+    * set as flexbox
+    * set column for `flex-direction`
+    * set a static width so the changing message lengths don't expand and contract the overall panel width and board position
+4. set up board
+    * set board as `display: grid`
+    * set a border
+    * set up 8 columns and 8 rows of equal width for our game spaces
+    * set a width and height that are each divisible by 8
+    * set dark spaces class properties
+        * choose color
+        * height and width should be 1/8 of the height and width of the entire board
+        * set as flexbox so you can center the game piece vertically and horizontally
+        * set contents of dark game space as vertically and horizontally centered using `justify-content` and `align-items`
+    * repeat what you did for dark spaces but with the light colored spaces class
+
+### app.js
         - set up frame work (constants, state variables, cached elements, event listeners, functions (init and render))
         - state variables
             -board is 8 arrays, each with 8 zeros (1 for black, -1 for red)
