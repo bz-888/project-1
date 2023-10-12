@@ -6,7 +6,8 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
-    background-image: url("https://tinyurl.com/cherry-blossom-background");
+    /* background-image: url("https://tinyurl.com/cherry-blossom-background"); */
+    background-color: "pink";
 }
 
 .panelSide {
