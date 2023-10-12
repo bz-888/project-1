@@ -29,8 +29,6 @@ const boardEl = document.querySelector(".board");
 
 
 
-
-
 // event listeners
 
 // end your turn
@@ -67,9 +65,9 @@ function init() {
     clickCount = 0;
     turn = "black";
     turnIndicatorEl.innerText = "Black side's turn!"
+    messageEl.innerText = "New game! Good luck!"
     winner = null;
 
-    console.log(turn);
     render();
 }
 
@@ -109,7 +107,9 @@ function selectPiece(event) {
                 event.target.style.border = "";
                 selectedPieceId = "";
                 // print message
-                messageEl.innerText = "Black piece unselected!"
+                messageEl.innerText = "Black piece unselected!";
+                // reset clickCount
+                clickCount == 0;
             } else {
                 // removes highlight from all pieces
                 board.forEach(function(rowArr, rowIdx) {
@@ -131,7 +131,9 @@ function selectPiece(event) {
             if (event.target.style.border === "3px solid yellow") {
                 event.target.style.border = "";
                 // print message
-                messageEl.innerText = "Red piece unselected!"
+                messageEl.innerText = "Red piece unselected!";
+                // reset clickCount = 0;
+                clickCount = 0;
             } else {
                 // removes highlight from all pieces
                 board.forEach(function(rowArr, rowIdx) {
@@ -148,12 +150,17 @@ function selectPiece(event) {
                 // print message
                 messageEl.innerText = "Red piece selected!"
             }
+        
+        // when it's black side's turn and the user attempts to click a red piece, show the following message and reset clickCount
         } else if (turn === "black" && event.target.innerText === "1") {
             messageEl.innerText = "It's not Red side's turn!";
+            clickCount = 0;
+        
+        // when it's red side's turn and the user attempts to click a black piece, show the message and reset clickCount
         } else if (turn === "red" && event.target.innerText === "-1") {
             messageEl.innerText = "It's not Black side's turn!";
+            clickCount = 0;
         }
-        console.log(`Selected Piece: ${selectedPieceId}`);
     }
 }
 
@@ -173,10 +180,27 @@ function selectDestination(event) {
         // grab the column and row numbers of the selected piece, this will be used to update the values in the board array
         const selectedDestinationCol = selectedDestinationId[3];
         const selectedDestinationRow = selectedDestinationId[5];
-        console.log(`Destination: ${selectedDestinationId}`)
         
         
         if (selectedPieceEl.innerText === "-1") {
+            // if you click on the corner of an empty space, it will register with a class of either brownSpace or whiteSpace
+            // an error will occur as the code for moving piece below only work when click a destination which is an invisble game piece
+            // once a valid destination is placed, the original game piece is made transparent
+            // the invisible game piece at the destination space is revealed
+            
+            // this if statement handles the situation when the space under the gamepiece is clicked as a destination
+            if (event.target.className === "brownSpace") {
+                messageEl.innerText = "Please click in the center of the destination space rather than a corner. Try again.";
+                selectedPieceEl.style.border = "";
+                clickCount = 0;
+                return;
+            // this else if statement handles a situation when a player tries to move to an invalid space, play should be kept on brown spaces
+            } else if (event.target.className === "whiteSpace" || event.target.className === "invalidSpace") {
+                messageEl.innerText = "This is an invalid space to move to. Please move diagonally on brown spaces."
+                selectedPieceEl.style.border = "";
+                clickCount = 0;
+                return;
+            }
             // if we are skipping over a piece, then do the following
             if (parseInt(selectedDestinationRow) - parseInt(selectedPieceRow) === 2) {
                 // define the target piece column and row, using parse int to convert string to number
@@ -187,13 +211,18 @@ function selectDestination(event) {
                 const targetPieceId = `gpc${targetPieceCol}r${targetPieceRow}`;
                 // grab the element using the ID
                 const targetPieceEl = document.getElementById(targetPieceId);
-                console.log(`targetPiece: ${targetPieceId}`);
         
                 // if the target piece is red when the selected piece is black, remove the red target piece from the board
                 if (targetPieceEl.innerText === "1") {
                     targetPieceEl.innerText = "0";
                     board[targetPieceRow][targetPieceCol] = 0;
                 }
+            // this prevent illegal backwards moves given that the game currently only allows for pawns and does not create queens yet
+            } else if (parseInt(selectedDestinationRow) - parseInt(selectedPieceRow) < 0) {
+                messageEl.innerText = "This is an illegal move. Please move your piece forward. It is unable to move backwards at this time.";
+                selectedPieceEl.style.border = "";
+                clickCount = 0;
+                return;
             }
             // update innerText to accomodate for future peice selection
             selectedPieceEl.innerText = "0";
@@ -202,9 +231,24 @@ function selectDestination(event) {
             board[selectedPieceRow][selectedPieceCol] = 0;
             board[selectedDestinationRow][selectedDestinationCol] = -1;
             render();
-            
+            messageEl.innerText = "Black piece moved!"
     
         } else if (selectedPieceEl.innerText === "1") {
+
+            // this if statement handles the situation when the space under the gamepiece is clicked as a destination
+            if (event.target.className === "brownSpace") {
+                messageEl.innerText = "Please click in the center of the destination space rather than a corner. Try again.";
+                selectedPieceEl.style.border = "";
+                clickCount = 0;
+                return;
+            // this else if statement handles a situation when a player tries to move to an invalid space, play should be kept on brown spaces
+            } else if (event.target.className === "whiteSpace" || event.target.className === "invalidSpace") {
+                messageEl.innerText = "This is an invalid space to move to. Please move diagonally on brown spaces."
+                selectedPieceEl.style.border = "";
+                clickCount = 0;
+                return;
+            }
+
             // if we are skipping over a piece, then do the following
             if (parseInt(selectedDestinationRow) - parseInt(selectedPieceRow) === -2) {
                 // define the target piece column and row, using parse int to convert string to number
@@ -215,14 +259,21 @@ function selectDestination(event) {
                 const targetPieceId = `gpc${targetPieceCol}r${targetPieceRow}`;
                 // grab the element using the ID
                 const targetPieceEl = document.getElementById(targetPieceId);
-                console.log(`targetPiece: ${targetPieceId}`);
         
                 // if the target piece is red when the selected piece is black, remove the red target piece from the board
                 if (targetPieceEl.innerText === "-1") {
                     targetPieceEl.innerText = "0";
                     board[targetPieceRow][targetPieceCol] = 0;
                 }
+
+             // this prevent illegal backwards moves given that the game currently only allows for pawns and does not create queens yet
+            } else if (parseInt(selectedDestinationRow) - parseInt(selectedPieceRow) > 0) {
+                messageEl.innerText = "This is an illegal move. Please move your piece forward. It is unable to move backwards at this time.";
+                selectedPieceEl.style.border = "";
+                clickCount = 0;
+                return;
             }
+
             // update innerText to accomodate for future peice selection
             selectedPieceEl.innerText = "0";
             selectedDestinationEl.innerText = "1";
@@ -230,6 +281,7 @@ function selectDestination(event) {
             board[selectedPieceRow][selectedPieceCol] = 0;
             board[selectedDestinationRow][selectedDestinationCol] = 1;
             render();
+            messageEl.innerText = "Red piece moved!"
         }
         
         // reset clickCount
@@ -261,12 +313,16 @@ function renderWinner() {
 }
 
 function endTurn() {
+    // if turn is black when End Turn is clicked, then turn becomes Red
     if (turn === "black") {
         turn = "red";
         turnIndicatorEl.innerText = "Red side's turn!"
+        messageEl.innerText = "Red side's turn!"
+    // if turn is red when End Turn is clicked, then turn becomes Black
     } else {
         turn = "black";
         turnIndicatorEl.innerText = "Black side's turn!"
+        messageEl.innerText = "Black side's turn!"
     }
     const selectedPieceEl = document.getElementById(selectedPieceId);
     selectedPieceEl.style.border = "";

@@ -6,11 +6,13 @@ body {
     display: flex;
     align-items: center;
     gap: 20px;
+    background-image: url("https://tinyurl.com/cherry-blossom-background");
 }
 
 .panelSide {
     display: flex;
     flex-direction: column;
+    width: 250px;
 }
 
 .boardSide {
