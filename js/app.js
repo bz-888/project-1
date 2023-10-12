@@ -14,6 +14,7 @@ let turn;
 let winner;
 let selectedPieceId;
 let selectedDestinationId;
+let clickCount;
 
 
 
@@ -39,7 +40,10 @@ endTurnButtonEl.addEventListener("click", endTurn);
 restartButtonEl.addEventListener("click", init);
 
 // click on a game piece to move
-boardEl.addEventListener("click", movePiece);
+boardEl.addEventListener("click", selectPiece);
+
+// click on a destination to move to
+boardEl.addEventListener("click", selectDestination);
 
 
 
@@ -60,7 +64,7 @@ function init() {
         [0, 1, 0, 1, 0, 1, 0, 1]
     ];
     
-
+    clickCount = 0;
     turn = "black";
     turnIndicatorEl.innerText = "Black side's turn!"
     winner = null;
@@ -87,91 +91,130 @@ function renderBoard() {
             // set the background color of cellEl by the value as defined in COLORS object
             cellEl.style.backgroundColor = COLORS[cellValue];
             cellEl.innerText = cellValue;
+            cellEl.style.color = "transparent";
         });
     });
 }
 
-function movePiece(event) {
-    selectPiece(event);
-    selectDestination(event);
-};
 
 function selectPiece(event) {
-    if (turn === "black" && event.target.innerText === "-1") {
-        // unselects a selected piece by removing yellow border and by emptying selectedPieceId variable
-        if (event.target.style.border === "3px solid yellow") {
-            event.target.style.border = "";
-            selectedPieceId = "";
-            // print message
-            messageEl.innerText = "Black piece unselected!"
-        } else {
-            // removes highlight from all pieces
-            board.forEach(function(rowArr, rowIdx) {
-                rowArr.forEach(function(cellValue, colIdx) {
-                    const cellID = `gpc${colIdx}r${rowIdx}`;
-                    const cellEl = document.getElementById(cellID);
-                    cellEl.style.border = "";
+    // the below only activiates when clickCount is at 1
+    clickCount++;
+    if (clickCount === 1) {
+
+        // only permits a black piece to be selected if it's black side's turn
+        if (turn === "black" && event.target.innerText === "-1") {
+            // unselects a selected piece by removing yellow border and by emptying selectedPieceId variable
+            if (event.target.style.border === "3px solid yellow") {
+                event.target.style.border = "";
+                selectedPieceId = "";
+                // print message
+                messageEl.innerText = "Black piece unselected!"
+            } else {
+                // removes highlight from all pieces
+                board.forEach(function(rowArr, rowIdx) {
+                    rowArr.forEach(function(cellValue, colIdx) {
+                        const cellID = `gpc${colIdx}r${rowIdx}`;
+                        const cellEl = document.getElementById(cellID);
+                        cellEl.style.border = "";
+                    })
                 })
-            })
-            // highlights selected piece
-            event.target.style.border = "3px solid yellow";
-            // identify selected piece
-            selectedPieceId = event.target.getAttribute("id");
-            // print message
-            messageEl.innerText = "Black piece selected!"
-        }
-    } else if (turn === "red" && event.target.innerText === "1") {
-        // unselects a selected piece by removing yellow border and by emptying selectedPieceId variable
-        if (event.target.style.border === "3px solid yellow") {
-            event.target.style.border = "";
-            // print message
-            messageEl.innerText = "Red piece unselected!"
-        } else {
-            // removes highlight from all pieces
-            board.forEach(function(rowArr, rowIdx) {
-                rowArr.forEach(function(cellValue, colIdx) {
-                    const cellID = `gpc${colIdx}r${rowIdx}`;
-                    const cellEl = document.getElementById(cellID);
-                    cellEl.style.border = "";
+                // highlights selected piece
+                event.target.style.border = "3px solid yellow";
+                // identify selected piece
+                selectedPieceId = event.target.getAttribute("id");
+                // print message
+                messageEl.innerText = "Black piece selected!"
+            }
+        } else if (turn === "red" && event.target.innerText === "1") {
+            // unselects a selected piece by removing yellow border and by emptying selectedPieceId variable
+            if (event.target.style.border === "3px solid yellow") {
+                event.target.style.border = "";
+                // print message
+                messageEl.innerText = "Red piece unselected!"
+            } else {
+                // removes highlight from all pieces
+                board.forEach(function(rowArr, rowIdx) {
+                    rowArr.forEach(function(cellValue, colIdx) {
+                        const cellID = `gpc${colIdx}r${rowIdx}`;
+                        const cellEl = document.getElementById(cellID);
+                        cellEl.style.border = "";
+                    })
                 })
-            })
-            // highlights selected piece
-            event.target.style.border = "3px solid yellow";
-            // identify selected piece
-            selectedPieceId = event.target.getAttribute("id");
-            // print message
-            messageEl.innerText = "Red piece selected!"
+                // highlights selected piece
+                event.target.style.border = "3px solid yellow";
+                // identify selected piece
+                selectedPieceId = event.target.getAttribute("id");
+                // print message
+                messageEl.innerText = "Red piece selected!"
+            }
+        } else if (turn === "black" && event.target.innerText === "1") {
+            messageEl.innerText = "It's not Red side's turn!";
+        } else if (turn === "red" && event.target.innerText === "-1") {
+            messageEl.innerText = "It's not Black side's turn!";
         }
-    } else if (turn === "black" && event.target.innerText === "1") {
-        messageEl.innerText = "It's not Red side's turn!";
-    } else if (turn === "red" && event.target.innerText === "-1") {
-        messageEl.innerText = "It's not Black side's turn!";
+        console.log(`Selected Piece: ${selectedPieceId}`);
     }
 }
 
 function selectDestination(event) {
-    // grab the element of the selected piece based on the ID gathered in the selectPiece function
-    const selectedPieceEl = document.getElementById(selectedPieceId);
-    // grab the column and row numbers of the selected piece, this will be used to update the values in the board array
-    const selectedPieceCol = selectedPieceId[3];
-    const selectedPieceRow = selectedPieceId[5];
-    // grab the id of the clicked target destination
-    const selectedDestinationId = event.target.getAttribute("id");
-    // grab the element of the selected destination based on the ID gathered in the line above
-    const selectedDestinationEl = document.getElementById(selectedDestinationId);
-    // grab the column and row numbers of the selected piece, this will be used to update the values in the board array
-    const selectedDestinationCol = selectedDestinationId[3];
-    const selectedDestinationRow = selectedDestinationId[5];
+    // the below only activates is clickCount is at two;
+    if (clickCount === 2) {
+
+        // grab the element of the selected piece based on the ID gathered in the selectPiece function
+        const selectedPieceEl = document.getElementById(selectedPieceId);
+        // grab the column and row numbers of the selected piece, this will be used to update the values in the board array
+        const selectedPieceCol = selectedPieceId[3];
+        const selectedPieceRow = selectedPieceId[5];
+        // grab the id of the clicked target destination
+        const selectedDestinationId = event.target.getAttribute("id");
+        // grab the element of the selected destination based on the ID gathered in the line above
+        const selectedDestinationEl = document.getElementById(selectedDestinationId);
+        // grab the column and row numbers of the selected piece, this will be used to update the values in the board array
+        const selectedDestinationCol = selectedDestinationId[3];
+        const selectedDestinationRow = selectedDestinationId[5];
+        console.log(`Destination: ${selectedDestinationId}`)
+        
+        
+        if (selectedPieceEl.innerText === "-1") {
+            // if we are skipping over a piece, then do the following
+            if (parseInt(selectedDestinationRow) - parseInt(selectedPieceRow) === 2) {
+                // define the target piece column and row, using parse int to convert string to number
+                const targetPieceCol = parseInt(selectedPieceCol) + (parseInt(selectedDestinationCol) - parseInt(selectedPieceCol))/2;
+                const targetPieceRow = parseInt(selectedPieceRow) + 1;
+                // define a spring as the ID of the target piece element
+                const targetPieceId = `gpc${targetPieceCol}r${targetPieceRow}`;
+                // grab the element using the ID
+                const targetPieceEl = document.getElementById(targetPieceId);
+                console.log(`targetPiece: ${targetPieceId}`);
+        
+                // if the target piece is red when the selected piece is black, remove the red target piece from the board
+                if (targetPieceEl.innerText === "1") {
+                    targetPieceEl.innerText = "0";
+                    board[targetPieceRow][targetPieceCol] = 0;
+                }
+            }
+            // update innerText to accomodate for future peice selection
+            selectedPieceEl.innerText = "0";
+            selectedDestinationEl.innerText = "-1";
+            // update the value of the board so the piece reappears in the new location visually
+            board[selectedPieceRow][selectedPieceCol] = 0;
+            board[selectedDestinationRow][selectedDestinationCol] = -1;
+            render();
+            
     
-    
-    if (selectedPieceEl.innerText === "-1") {
-        // update innerText to accomodate for future peice selection
-        selectedPieceEl.innerText = "0";
-        selectedDestinationEl.innerText = "-1";
-        // update the value of the board so the piece reappears in the new location visually
-        board[selectedPieceRow][selectedPieceCol] = 0;
-        board[selectedDestinationRow][selectedDestinationCol] = -1;
-        render();
+        } else if (selectedPieceEl.innerText === "1") {
+            // update innerText to accomodate for future peice selection
+            selectedPieceEl.innerText = "0";
+            selectedDestinationEl.innerText = "1";
+            // update the value of the board so the piece reappears in the new location visually
+            board[selectedPieceRow][selectedPieceCol] = 0;
+            board[selectedDestinationRow][selectedDestinationCol] = 1;
+            render();
+        }
+        
+        // reset clickCount
+        clickCount = 0;
     }
 }
 
@@ -206,4 +249,6 @@ function endTurn() {
         turn = "black";
         turnIndicatorEl.innerText = "Black side's turn!"
     }
+    const selectedPieceEl = document.getElementById(selectedPieceId);
+    selectedPieceEl.style.border = "";
 };
