@@ -12,7 +12,7 @@ Checkers (player vs. player, no AI)
 1. set up boilerplater
 2. connect style.css and app.js to index.html
 3. create two divs for the two sides of the board, name the first one panelSide
-⋅⋅1. create a static info div for the title, description, and dedication
+    1. create a static info div for the title, description, and dedication
 
 
 3. create element for board, div
