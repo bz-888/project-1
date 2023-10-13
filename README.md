@@ -47,6 +47,37 @@ Checkers (player vs. player, no AI)
     * repeat what you did for dark spaces but with the light colored spaces class
 
 ### app.js
+1. set up framework (constants, state variables, cached elements, event listeners, functions)
+2. define state variables
+    * `let board;`: this sets a reusable placeholder for the values on the board
+    * `let turn;`: this sets a reusable placeholder for who's turn it is
+    * `let winner;`: this sets a reusable placeholder for who the winner is
+    * `let selectedPieceId;`: this sets a reusable placeholder for what the selected piece is
+    * `let selectedDestinationId;`: this sets a resusable placeholder for where we want the selected piece to go
+    * `let clickCount;`: this keeps track of what number click it is (1st click for selecting a piece and 2nd click for moving a piece to a destination)
+3. define constants: set up an object where -1 is black, 0 is transparent, and 1 is red
+4. define cached elements
+    * `const turnIndicatorEl = document.querySelector(".turnIndicator");`: selects the empty div element under the turn indicator label
+    * `const endTurnButtonEl = document.querySelector(".endTurnButton");`: selects the end turn button element
+    * `const restartButtonEl = document.querySelector(".restartButton");`: selects the restart button element
+    * `const messageEl = document.querySelector(".message");`: selects the empty div element under the message label
+    * `const boardEl = document.querySelector(".board");`: selects the element representing the board
+5. set up event listeners
+    * `endTurnButtonEl.addEventListener("click", endTurn);`: set up an event listener to listen for a click on the endTurn button, when it is clicked, run the endTurn function
+    * `restartButtonEl.addEventListener("click", init);`: set up an event listener to listen for a click on the restart button, when it is clicked, run the init function to set the webpage to how it is upon start up
+    * `boardEl.addEventListener("click", selectPiece);`: set up an event listener to listen for a click on the board, when a click on the board happens, run the selectPiece function
+    * `boardEl.addEventListener("click", selectDestination);`: set up an event listener to listen for a click on the board, when a click on the board happens, run the selectDestination function
+6. set up functions
+    * call the init function
+    * set up init function
+        * set up an array with 8 sub-arrays, with each sub-array having 8 values: with -1 indicating black pieces, 0 indicating a transparent pice (AKA empty space), and 1 indicating red pieces
+        * set clickCount as zero in anticipation of the first click on the board
+        * set turn to "black" as according to Wikipedia's description of checkers rules, which state that black goes first
+        * set a starting message
+        * set winner to null
+        * example image: ![init function result image](https://imgur.com/a/VndqyHU "init function result")
+
+
         - set up frame work (constants, state variables, cached elements, event listeners, functions (init and render))
         - state variables
             -board is 8 arrays, each with 8 zeros (1 for black, -1 for red)
