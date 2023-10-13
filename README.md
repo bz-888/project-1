@@ -127,33 +127,8 @@ Checkers (player vs. player, no AI)
                 * make the origin piece / selected piece transparent and make the destination piece black by updating both the values in the array (for DOM color update purposes) and update the innerText for (color identification purposes)
         * repeat these steps and this logic for if the piece selected is a red piece
         * after either a red piece or a black piece has moved successfully, reset the clickCount to zero
-
-
-
-
-
-        - set up frame work (constants, state variables, cached elements, event listeners, functions (init and render))
-        - state variables
-            -board is 8 arrays, each with 8 zeros (1 for black, -1 for red)
-        - set up init: how should the game look in the beginning of a match, remember to render
-        - set up render
-        - add constants, state variables, and cached elements as you go
-        - event listeners
-            - select which piece to move
-            - pieces can only move diagonally (hint: +/-1 cr +/-1 r)
-            - pawns should only move towards the opposite side of the board, cannot move backwards
-            - pawns can either move one diagonal space or jump as many times as desired and possible
-            - click for movement to valid destination
-            - jumps should remove opponent pieces from the board
-            - not MVP: can add removed pieces to removed pieces section of the webpage
-            - queens move diagonally but in any direction that's available
-            - pawns who reach the last row of the opposite side become queens
-            - check for pieces left on each side after jump, if no pieces left, then game over - side with pieces remaining is the winner
-        - init
-            - show determining number of starting pieces
-            - tracking who's turn is it to start with, can start with just player 1
-        - render
-            - which pieces were capture from the board and remove those pieces from the board
-            - where living pieces were moved to
+    * set up endTurn function
+        * if the turn is currently black's turn, when the endTurn button is clicked, make it red's turn and display that in the turn indicator div element
+        * if the turn is currently red's turn, when the endTurn button is click, make it black's turn and displate that in the turn indicator div element
 
 ===========================

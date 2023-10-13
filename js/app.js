@@ -94,6 +94,28 @@ function renderBoard() {
     });
 }
 
+function renderWinner() {
+    let blackCount = 0;
+    let redCount = 0;
+    board.forEach((row) => {
+        row.forEach((space) => {
+            if (space === -1) {
+                blackCount ++;
+            } else if (space === 1) {
+                redCount ++;
+            }
+        })    
+    })
+
+    if (blackCount === 0) {
+        winner = "Red";
+        messageEl.innerText = `Winner is ${winner}!`
+    } else if (redCount === 0) {
+        winner = "Black";
+        messageEl.innerText = `Winner is ${winner}!`
+    }
+    
+}
 
 function selectPiece(event) {
     // the below only activiates when clickCount is at 1
@@ -287,29 +309,6 @@ function selectDestination(event) {
         // reset clickCount
         clickCount = 0;
     }
-}
-
-function renderWinner() {
-    let blackCount = 0;
-    let redCount = 0;
-    board.forEach((row) => {
-        row.forEach((space) => {
-            if (space === -1) {
-                blackCount ++;
-            } else if (space === 1) {
-                redCount ++;
-            }
-        })    
-    })
-
-    if (blackCount === 0) {
-        winner = "Red";
-        messageEl.innerText = `Winner is ${winner}!`
-    } else if (redCount === 0) {
-        winner = "Black";
-        messageEl.innerText = `Winner is ${winner}!`
-    }
-    
 }
 
 function endTurn() {
