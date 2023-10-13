@@ -7,15 +7,10 @@ Checkers (player versus player, no AI available at this time)
 
 ![init function result image](https://i.imgur.com/7EtiMFt.png "init function result")
 
-## Link to Game:
-[Link to Checkers](https://bz-888.github.io/project-1/)
-
-
 ## Technologies Used:
 * HTML
 * CSS
 * JavaScript
-
 
 ## Getting Started:
 1. Black always goes first according to Wikipedia.
@@ -25,6 +20,8 @@ Checkers (player versus player, no AI available at this time)
 5. The objective is to eliminate all of your opponent's pieces by jumping over them diagonally.
 6. If you need to reset the game, use the Restart button or refresh your browser.
 
+### Link to Game:
+[Link to Checkers](https://bz-888.github.io/project-1/)
 
 ## Next Steps/Future Enhancements:
 * Further limit the moves available, e.g. not allowing a black piece to move forward to a brown space that is too far away
