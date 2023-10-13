@@ -1,13 +1,48 @@
 # PROJECT 1:
 
-## Game you want to do:
-Checkers (player vs. player, no AI)
+## Game:
+Checkers (player versus player, no AI available at this time)
+
+## Screenshot:
+
+![init function result image](https://i.imgur.com/7EtiMFt.png "init function result")
+
+
+## Technologies Used:
+* HTML
+* CSS
+* JavaScript
+
+
+## Getting Started:
+1. Black always goes first according to Wikipedia.
+2. Make your move as black. You must move forward and diagonally onto a brown space.
+3. When you have made your move, please click the End Turn button.
+4. Red player may now move. When a move has been made, please click end turn.
+5. The objective is to eliminate all of your opponent's pieces by jumping over them diagonally.
+6. If you need to reset the game, use the Restart button or refresh your browser.
+
+
+## Next Steps/Future Enhancements:
+* Further limit the moves available, e.g. not allowing a black piece to move forward to a brown space that is too far away
+* Limit the amount of legal moves per turn
+* Allow for piece upgrades into a piece that can move forwards and backwards
+* Product an undo feature that is available only before end turn is clicked
+* Highlight available immediate moves
+* Develop a player naming feature
+* Develop a scoreboard for the browser session
+* Develop an all-time scoreboard
+* Develop an AI
+* Improve quality of visual aesthetics
+
+
+=========================================
+
 
 ## Wireframe of your game:
 [Figma wireframe](https://www.figma.com/file/X6TPI7B6WfPM88ueXNryOd/Untitled?type=design&node-id=0%3A1&mode=design&t=srduHdn1zlyYr3LF-1)
 
-
-## Brief psuedocode for gameplay:
+## Pseudocode:
 ### index.html
 1. set up boilerplater
 2. connect style.css and app.js to index.html
@@ -131,4 +166,4 @@ Checkers (player vs. player, no AI)
         * if the turn is currently black's turn, when the endTurn button is clicked, make it red's turn and display that in the turn indicator div element
         * if the turn is currently red's turn, when the endTurn button is click, make it black's turn and displate that in the turn indicator div element
 
-===========================
+=========================================
