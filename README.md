@@ -85,7 +85,7 @@ Checkers (player vs. player, no AI)
             * set up the renderBoard function as such...
             * iterate through each sub-array in the board element array, calling each sub-array "rowArr" which represents an array that represents a row, keep track of the index of each sub-Array with a variable named rowIdx
             * iterate through each value in the sub-Array which we can call using rowArr, hold the value of each number in the array using a variable such as cellValue and hold the index/position of each number using colIdx
-            * rowIdx represents the row number and colIdx represents the column number, this gives us a coordinate from which we can pull our DOM element from above from our HTML
+            * rowIdx represents the row number and colIdx represents the column number, this gives us a coordinate from which we can pull our DOM element from above from our HTML, let's all the concatenated string selectedPieceId
             * we can now grab an element, call it cellEL, using the coordinates our rowIdx and colIdx
             * depending on the value we pulled earlier, we can use our constant COLORS to determine the background color of our game piece element (black, transparent, or red)
             * add the cellValue as the innerText value of the cellEl, this way we can refer to the value later on to determine if the cell is black, empty, or red
@@ -96,7 +96,39 @@ Checkers (player vs. player, no AI)
                 * if there are no black pieces left, red wins
                 * if there are no red pieces left, black wins
     
-    *
+    * set up the selectPiece function
+        * add `clickCount++`: this adds one to the clickCount every time the board is clicked
+        * write all the following code under a conditional that only activates if the clickCount is 1
+        * if the piece we clicked is black and the it's black side's turn and it already has a yellow border, remove the highlighting border from it, update message to say that a black piece is unselected, and reset clickCount to zero
+        * if there wasn't a border there, remove borders from the rest of the board and add a border to the black piece that was clicked and update the message to say that a black piece was selected
+        * repeat this logic for the red pieces on red's turn
+        * if the turn (whether it's red's or black's) don't match the color of the piece selected, inform the user by printing a message in the messageEl and reset clickCount to zero
+
+    * set up the selectDestination function
+        * write all the following code under a conditional that only activates if the clickCount is two
+        * define the selectedPieceEl using the selectedPieceId
+        * define selectedPieceRow and selectedPieceCol using selectedPieceId's various index positions of the string
+        * use `event.target.getAttribute("id")` to get the selectedDestinationId
+        * define selectedDestinationEl using selectedDestinationId
+        * define selectedDestinationRow and selectedDestinationCol using selectedDestinationId
+        * if the selectedPieceEl is a black pieces (innerText = -1):
+            * to deal with some potential errors and invalid moves:
+                * if the event.target is a a brown space, meaning the space on the board behind/under the game piece rather than where the actual game piece will appear, print an error message in messageEl, remove the border from the selectedPieceEl, reset the clickCount to zero, then return out of the function
+                * if the event.target is a white space (either the actual space behind the where the game piece would be or where the actual game piece would be), print out an error message in messageEl, remove the border from the selectedPieceEl, reset the clickCount to zero, then return out of the function
+            * to handle when a black piece skips over a red piece:
+                * we can recognize an attack/skip if the row of the destination space is two units greater than the row value of the selected space, we can right a conditional for this
+                    * Note: we use `parseInt` because innerText is represented as a string, and we need it represented as an interger
+                * because we know the origin of the selected piece and the destination space, we can use some math to figure out where the targeted piece is located
+                    * if the target piece is red (innerText === 1), then make it transparent using
+            * if the piece did not move two rows in distance, did it move less than 0 rows in distance? Meaning, did the black piece move background?
+                * a conditional is written here to prevent this from occurring
+                * print an error message, remove the border from the selected piece and reset clickCount to zero
+            * at line 228 in the code, the piece either successufully skipped over a red piece or simply moved to an empty space
+                * make the origin piece / selected piece transparent and make the destination piece black by updating both the values in the array (for DOM color update purposes) and update the innerText for (color identification purposes)
+        * repeat these steps and this logic for if the piece selected is a red piece
+        * after either a red piece or a black piece has moved successfully, reset the clickCount to zero
+
+
 
 
 
