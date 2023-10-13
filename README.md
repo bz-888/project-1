@@ -7,6 +7,9 @@ Checkers (player versus player, no AI available at this time)
 
 ![init function result image](https://i.imgur.com/7EtiMFt.png "init function result")
 
+## Link to Game:
+![bz-888 checkers]()
+
 
 ## Technologies Used:
 * HTML

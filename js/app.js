@@ -109,10 +109,10 @@ function renderWinner() {
 
     if (blackCount === 0) {
         winner = "Red";
-        messageEl.innerText = `Winner is ${winner}!`
+        messageEl.innerText = `${winner} side is the winner!`
     } else if (redCount === 0) {
         winner = "Black";
-        messageEl.innerText = `Winner is ${winner}!`
+        messageEl.innerText = `${winner} side is the winner!`
     }
     
 }
@@ -312,16 +312,21 @@ function selectDestination(event) {
 }
 
 function endTurn() {
-    // if turn is black when End Turn is clicked, then turn becomes Red
-    if (turn === "black") {
-        turn = "red";
-        turnIndicatorEl.innerText = "Red side's turn!"
-        messageEl.innerText = "Red side's turn!"
-    // if turn is red when End Turn is clicked, then turn becomes Black
+    // check if someone won with the end of this turn
+    if (winner === null) {
+        // if turn is black when End Turn is clicked, then turn becomes Red
+        if (turn === "black") {
+            turn = "red";
+            turnIndicatorEl.innerText = "Red side's turn!"
+            messageEl.innerText = "Red side's turn!"
+        // if turn is red when End Turn is clicked, then turn becomes Black
+        } else {
+            turn = "black";
+            turnIndicatorEl.innerText = "Black side's turn!"
+            messageEl.innerText = "Black side's turn!"
+        }
     } else {
-        turn = "black";
-        turnIndicatorEl.innerText = "Black side's turn!"
-        messageEl.innerText = "Black side's turn!"
+        renderWinner()
     }
     const selectedPieceEl = document.getElementById(selectedPieceId);
     selectedPieceEl.style.border = "";
