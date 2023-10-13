@@ -75,7 +75,7 @@ Checkers (player vs. player, no AI)
         * set turn to "black" as according to Wikipedia's description of checkers rules, which state that black goes first
         * set a starting message
         * set winner to null
-        * example image: ![init function result image](https://imgur.com/a/VndqyHU "init function result")
+        * example image: ![init function result image](https://i.imgur.com/7EtiMFt.png "init function result")
 
 
         - set up frame work (constants, state variables, cached elements, event listeners, functions (init and render))
