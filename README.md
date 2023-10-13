@@ -27,10 +27,10 @@ Checkers (player versus player, no AI available at this time)
 * Further limit the moves available, e.g. not allowing a black piece to move forward to a brown space that is too far away
 * Limit the amount of legal moves per turn
 * Allow for piece upgrades into a piece that can move forwards and backwards
-* Product an undo feature that is available only before end turn is clicked
-* Highlight available immediate moves
+* Produce an undo feature that is available only before end turn button is clicked
+* Highlight available immediate moves for the selected piece
 * Develop a player naming feature
-* Develop a scoreboard for the browser session
+* Develop a scoreboard of win records for the browser session based on the player names
 * Develop an all-time scoreboard
 * Develop an AI
 * Improve quality of visual aesthetics
