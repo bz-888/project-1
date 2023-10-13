@@ -75,7 +75,29 @@ Checkers (player vs. player, no AI)
         * set turn to "black" as according to Wikipedia's description of checkers rules, which state that black goes first
         * set a starting message
         * set winner to null
-        * example image: ![init function result image](https://i.imgur.com/7EtiMFt.png "init function result")
+        * call the render function to populate the webpage with the correct visuals
+        * example image: 
+        
+        ![init function result image](https://i.imgur.com/7EtiMFt.png "init function result")
+    
+    * set up the render function
+        * call the renderBoard function
+            * set up the renderBoard function as such...
+            * iterate through each sub-array in the board element array, calling each sub-array "rowArr" which represents an array that represents a row, keep track of the index of each sub-Array with a variable named rowIdx
+            * iterate through each value in the sub-Array which we can call using rowArr, hold the value of each number in the array using a variable such as cellValue and hold the index/position of each number using colIdx
+            * rowIdx represents the row number and colIdx represents the column number, this gives us a coordinate from which we can pull our DOM element from above from our HTML
+            * we can now grab an element, call it cellEL, using the coordinates our rowIdx and colIdx
+            * depending on the value we pulled earlier, we can use our constant COLORS to determine the background color of our game piece element (black, transparent, or red)
+            * add the cellValue as the innerText value of the cellEl, this way we can refer to the value later on to determine if the cell is black, empty, or red
+            * we don't want the innerText showing, show we can make the innerText color property = "transparent"
+        * call the renderWinner function
+            * set up the renderWinner function as such...
+            * use this logic
+                * if there are no black pieces left, red wins
+                * if there are no red pieces left, black wins
+    
+    *
+
 
 
         - set up frame work (constants, state variables, cached elements, event listeners, functions (init and render))
